@@ -4,4 +4,4 @@
 
 def cocat(str1: str, str2: str) -> str:
     """a type-annotated function concat"""
-    return str1 + str2
+    return f"{str1}{str2}"
