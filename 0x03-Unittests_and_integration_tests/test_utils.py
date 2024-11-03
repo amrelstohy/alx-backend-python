@@ -6,7 +6,7 @@ from utils import access_nested_map
 
 
 class TestAccessNestedMap(unittest.TestCase):
-    """Parameterize a unit test"""
+    """0. Parameterize a unit test"""
 
     @parameterized.expand([
         ({"a": 1}, ("a",), 1),
@@ -16,3 +16,11 @@ class TestAccessNestedMap(unittest.TestCase):
     def test_access_nested_map(self, nested_map, path, expected):
         """Parameterize a unit test"""
         self.assertEqual(access_nested_map(nested_map, path), expected)
+
+    @parameterized.expand([
+        ({}, ("a",), KeyError),
+        ({"a": 1}, ("a", "b"), KeyError),
+    ])
+    def test_access_nested_map_exception(self, nested_map, path, expected):
+        """1. Parameterize a unit test"""
+        self.assertRaises(KeyError)
