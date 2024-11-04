@@ -23,4 +23,6 @@ class TestAccessNestedMap(unittest.TestCase):
     ])
     def test_access_nested_map_exception(self, nested_map, path, expected):
         """1. Parameterize a unit test"""
-        self.assertRaises(KeyError)
+        with self.assertRaises(expected) as error:
+            access_nested_map(nested_map, path) 
+        self.assertEqual(str(error.exception), repr(path[-1]))
