@@ -12,7 +12,8 @@ class TestGithubOrgClient(unittest.TestCase):
     @parameterized.expand(['google', 'abc'])
     @unittest.mock.patch('client.get_json')
     def test_org(self, org_name, mock_get):
+        mock_get.return_value = 'test'
 
         obj = GithubOrgClient(org_name)
-        obj.org()
+        self.assertEqual(obj.org, 'test')
         mock_get.assert_called_once()
